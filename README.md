@@ -77,15 +77,34 @@ pnpm install
 Copy the example environment file:
 
 ```bash
-cp .env.example .env.local
+# -----------------------------------------------------------------------------
+# Core app URLs & Better Auth configuration
+# -----------------------------------------------------------------------------
+NEXT_PUBLIC_APP_URL="http://localhost:3000"
+BETTER_AUTH_URL="http://localhost:3000/api/auth"
+# Generate a secure random string: `openssl rand -hex 32`
+BETTER_AUTH_SECRET="replace-with-generated-secret"
+
+# -----------------------------------------------------------------------------
+# Database (PostgreSQL / Prisma)
+# -----------------------------------------------------------------------------
+# Example local connection string – update credentials/host/db as needed.
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/hagenkit"
+
+# -----------------------------------------------------------------------------
+# OAuth providers
+# -----------------------------------------------------------------------------
+GOOGLE_CLIENT_ID="your-google-oauth-client-id"
+GOOGLE_CLIENT_SECRET="your-google-oauth-client-secret"
+
+# -----------------------------------------------------------------------------
+# Email & notifications (Resend + branding overrides)
+# -----------------------------------------------------------------------------
+RESEND_API_KEY="re_your_resend_api_key"
+EMAIL_FROM="noreply@hagenkit.dev"
+EMAIL_FROM_NAME="HagenKit"
+SUPPORT_EMAIL="support@hagenkit.dev"
 ```
-
-Update `.env.local` with your credentials:
-
-- `DATABASE_URL` for PostgreSQL (direct connection).
-- `BETTER_AUTH_SECRET`, `BETTER_AUTH_URL`, `NEXT_PUBLIC_APP_URL`.
-- OAuth providers such as `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`.
-- Optional integrations (`RESEND_API_KEY`, Stripe keys, etc.).
 
 Generate the Prisma client and sync the schema:
 
